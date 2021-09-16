@@ -9,6 +9,10 @@ import com.itextpdf.text.pdf.*;
 import java.io.*;
 
 public class PdfUtil {
+    public static byte[] drawText(InputStream is, String logoText) {
+        return drawText(is, logoText, 0.2f);
+    }
+
     public static byte[] drawText(InputStream is, String logoText, float alpha) {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
@@ -45,11 +49,4 @@ public class PdfUtil {
         return null;
     }
 
-    public static void main(String[] args) throws IOException {
-        File input_file = new File("C:\\Users\\ecidi\\Downloads\\a.pdf");
-        File out_file = new File("C:\\Users\\ecidi\\Downloads\\b.pdf");
-        byte[] rs = drawText(new FileInputStream(input_file), "此文件仅限本地使用", 0.2f);
-        FileOutputStream os = new FileOutputStream(out_file);
-        os.write(rs);
-    }
 }
