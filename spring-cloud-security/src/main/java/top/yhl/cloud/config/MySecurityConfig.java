@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy;
@@ -29,7 +31,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     DataSource dataSource;
@@ -37,6 +39,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     UserService userService;
     @Autowired
     MyAuthenticationDetailSource myAuthenticationDetailSource;
+
+    @Autowired
+    MyAccessDecisionManager myAccessDecisionManager;
+    @Autowired
+    MySecurityMetadataSource mySecurityMetadataSource;
 
 
     @Bean
@@ -79,6 +86,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+                    @Override
+                    public <O extends FilterSecurityInterceptor> O postProcess(O o) {
+                        o.setSecurityMetadataSource(mySecurityMetadataSource);
+                        o.setAccessDecisionManager(myAccessDecisionManager);
+                        return o;
+                    }
+                })
                 .antMatchers("/admin/**").fullyAuthenticated()
                 .antMatchers("/rememberme").rememberMe()
                 .antMatchers("/admin/**").hasRole("admin")

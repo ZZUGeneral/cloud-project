@@ -10,6 +10,7 @@
     <modules>
         <module>spring-cloud-commom</module>
         <module>spring-cloud-file</module>
+        <module>spring-cloud-security</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -10,11 +10,12 @@ public class MyWebAuthenticationDetails extends WebAuthenticationDetails {
 
     public MyWebAuthenticationDetails(HttpServletRequest request) {
         super(request);
-        String code = request.getParameter("code");
-        String verify_code = (String) request.getSession().getAttribute("verify_code");
-        if (code != null && verify_code != null && code.equals(verify_code)) {
-            isPassed = true;
-        }
+//        String code = request.getParameter("code");
+//        String verify_code = (String) request.getSession().getAttribute("verify_code");
+//        if (code != null && verify_code != null && code.equals(verify_code)) {
+//            isPassed = true;
+//        }
+        isPassed = true;
     }
 
     public boolean isPassed() {
