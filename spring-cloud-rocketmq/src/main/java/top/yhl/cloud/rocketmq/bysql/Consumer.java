@@ -27,6 +27,7 @@ public class Consumer {
          * - **NULL**，特殊的常量
          * - 布尔值，**TRUE** 或 **FALSE**
          */
+
         consumer.subscribe("TopicTest", MessageSelector.bySql("a between 0 and 3"));
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override
