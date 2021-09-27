@@ -91,7 +91,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>top.yhl.cloud.SpringCloudWebfluxApplication</mainClass>
+                    <mainClass>top.yhl.cloud.webflux.SpringCloudWebfluxApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
