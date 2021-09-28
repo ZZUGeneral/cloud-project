@@ -2,13 +2,12 @@ package top.yhl.cloud;
 
 
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.StrUtil;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.yhl.cloud.redis.RedisUtil;
+import top.yhl.cloud.data.redis.RedisUtil;
 
 import java.io.Serializable;
 import java.util.Date;
