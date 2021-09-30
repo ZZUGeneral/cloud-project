@@ -15,12 +15,14 @@ import java.util.Collections;
 public class RedisLock {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    //锁键
+    private String lock_key = "redis_lock";
 
-    private String lock_key = "redis_lock"; //锁键
+    //锁过期时间
+    protected long internalLockLeaseTime = 30000;
 
-    protected long internalLockLeaseTime = 30000;//锁过期时间
-
-    private long timeout = 999999; //获取锁的超时时间
+    //获取锁的超时时间
+    private long timeout = 999999;
 
 
     //SET命令的参数
@@ -64,10 +66,11 @@ public class RedisLock {
 
     /**
      * 解锁
+     *
      * @param id
      * @return
      */
-    public boolean unlock(String id){
+    public boolean unlock(String id) {
         Jedis jedis = jedisPool.getResource();
         String script =
                 "if redis.call('get',KEYS[1]) == ARGV[1] then" +
@@ -78,11 +81,11 @@ public class RedisLock {
         try {
             Object result = jedis.eval(script, Collections.singletonList(lock_key),
                     Collections.singletonList(id));
-            if("1".equals(result.toString())){
+            if ("1".equals(result.toString())) {
                 return true;
             }
             return false;
-        }finally {
+        } finally {
             jedis.close();
         }
     }
