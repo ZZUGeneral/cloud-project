@@ -15,6 +15,7 @@
         <module>spring-cloud-rocketmq</module>
         <module>spring-cloud-webflux</module>
         <module>spring-cloud-test</module>
+        <module>spring-cloud-quartz</module>
     </modules>
     <packaging>pom</packaging>
 

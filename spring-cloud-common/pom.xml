@@ -7,7 +7,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>top.yhl.cloud</groupId>
     <artifactId>spring-cloud-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-common</name>
@@ -116,3 +115,5 @@
     </build>
 
 </project>
+
+
