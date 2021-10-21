@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+FeignInvocationHandler -> SynchronousMethodHandler: invoke > ((MethodHandler)this.dispatch.get(method)).invoke(args)
+SynchronousMethodHandler --> Client: executeAndDecode() > this.client.execute(request, this.options)
+
+Client -> Default:execute() > convertResponse()
+Default -> HttpURLConnection: getInputStream() > getInputStream0()  > connect() > plainConnect() > plainConnect0() > getNewHttpClient()
+HttpURLConnection --> HttpClient: KeepAliveKey.get()
+@enduml
