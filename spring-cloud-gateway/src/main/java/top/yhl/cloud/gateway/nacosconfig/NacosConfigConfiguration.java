@@ -14,15 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package top.yhl.cloud.test.nacosdiscovery;
+package top.yhl.cloud.gateway.nacosconfig;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
  */
-//@EnableDiscoveryClient
+@EnableAutoConfiguration
 @Configuration
-public class NacosDiscoveryConfiguration {
+public class NacosConfigConfiguration {
 }

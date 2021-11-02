@@ -34,6 +34,6 @@ public class MyAbstractTokenGranter extends AbstractTokenGranter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return (OAuth2Authentication) userAuth;
     }
 }
