@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.service;
+package top.yhl.cloud.quartz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.quartz.SchedulerException;

@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.util;
+package top.yhl.cloud.quartz.util;
 
 public class TaskException extends Exception {
     private static final long serialVersionUID = 1L;

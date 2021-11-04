@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.service.impl;
+package top.yhl.cloud.quartz.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.quartz.JobDataMap;

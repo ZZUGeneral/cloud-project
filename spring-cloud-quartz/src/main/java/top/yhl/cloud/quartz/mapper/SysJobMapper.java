@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.mapper;
+package top.yhl.cloud.quartz.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;

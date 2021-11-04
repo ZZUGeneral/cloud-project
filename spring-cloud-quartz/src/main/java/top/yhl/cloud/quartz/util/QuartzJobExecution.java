@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.util;
+package top.yhl.cloud.quartz.util;
 
 import org.quartz.JobExecutionContext;
 import top.yhl.cloud.quartz.entity.SysJob;

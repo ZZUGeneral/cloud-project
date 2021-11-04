@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.entity;
+package top.yhl.cloud.quartz.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;

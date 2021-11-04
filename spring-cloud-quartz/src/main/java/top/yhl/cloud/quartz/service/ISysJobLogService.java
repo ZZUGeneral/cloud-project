@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.service;
+package top.yhl.cloud.quartz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import top.yhl.cloud.quartz.entity.SysJobLog;
@@ -6,7 +6,7 @@ import top.yhl.cloud.quartz.entity.SysJobLog;
 import java.util.List;
 
 // 定时任务调度日志信息信息 服务层
-public interface ISysJobLogService extends IService<SysJobLog>{
+public interface ISysJobLogService extends IService<SysJobLog> {
     /**
      * 获取quartz调度器日志的计划任务
      *
@@ -51,3 +51,4 @@ public interface ISysJobLogService extends IService<SysJobLog>{
      */
     public void cleanJobLog();
 }
+

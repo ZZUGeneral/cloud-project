@@ -5,12 +5,10 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor;
-import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.util.CollectionUtils;
 import top.yhl.cloud.log.entity.LogRecordContext;
-import top.yhl.cloud.log.entity.LogRecordEvaluationContext;
 import top.yhl.cloud.log.entity.LogRecordOps;
 import top.yhl.cloud.log.entity.MethodExecuteResult;
 
@@ -74,22 +72,25 @@ public class LogRecordPointcutAdvisor extends AbstractBeanFactoryPointcutAdvisor
     }
 
     private void recordExecute(Object ret, Method method, Object[] args, Collection<LogRecordOps> operations, Class<?> targetClass, Object success, Object errorMsg, Map<String, String> functionNameAndReturnMap) {
+
     }
 
     private Map<String, String> processBeforeExecuteFunctionTemplate(List<String> spElTemplates, Class<?> targetClass, Method method, Object[] args) {
         SpelExpressionParser parser = new SpelExpressionParser();
+        Map<String, String> map = new HashMap<>();
         for (String templates : spElTemplates) {
             Expression expression = parser.parseExpression(templates);
-            expression.getExpressionString();
-            EvaluationContext context = new LogRecordEvaluationContext(targetClass);
+
+            map.put(expression.getExpressionString(), "a");
         }
+        return map;
 
     }
 
     private List<String> getBeforeExecuteFunctionTemplate(Collection<LogRecordOps> operations) {
         List<String> list = new ArrayList<>();
         for (LogRecordOps op : operations) {
-
+            list.add(op.getTemplate());
         }
         return list;
     }
