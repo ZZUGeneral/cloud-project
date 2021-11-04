@@ -10,9 +10,14 @@ public class LogRecordContext {
         return variableMapStack.get().pop();
     }
 
+    public static void setVariables(Map<String, Object> variables) {
+        variableMapStack.get().push(variables);
+    }
+
     public static void putEmptySpan() {
     }
 
     public static void clear() {
+        variableMapStack.remove();
     }
 }

@@ -1,18 +1,25 @@
-package top.yhl.cloud.log.aop;
+package top.yhl.cloud.log.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.support.AbstractBeanFactoryPointcutAdvisor;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.util.CollectionUtils;
 import top.yhl.cloud.log.entity.LogRecordContext;
+import top.yhl.cloud.log.entity.LogRecordEvaluationContext;
 import top.yhl.cloud.log.entity.LogRecordOps;
 import top.yhl.cloud.log.entity.MethodExecuteResult;
 
 import java.lang.reflect.Method;
 import java.util.*;
 
+/**
+ * @author yang_hl3
+ */
 @Slf4j
 public class LogRecordPointcutAdvisor extends AbstractBeanFactoryPointcutAdvisor implements MethodInterceptor {
     private LogRecordOperationSource logRecordOperationSource;
@@ -70,10 +77,21 @@ public class LogRecordPointcutAdvisor extends AbstractBeanFactoryPointcutAdvisor
     }
 
     private Map<String, String> processBeforeExecuteFunctionTemplate(List<String> spElTemplates, Class<?> targetClass, Method method, Object[] args) {
+        SpelExpressionParser parser = new SpelExpressionParser();
+        for (String templates : spElTemplates) {
+            Expression expression = parser.parseExpression(templates);
+            expression.getExpressionString();
+            EvaluationContext context = new LogRecordEvaluationContext(targetClass);
+        }
+
     }
 
     private List<String> getBeforeExecuteFunctionTemplate(Collection<LogRecordOps> operations) {
+        List<String> list = new ArrayList<>();
+        for (LogRecordOps op : operations) {
 
+        }
+        return list;
     }
 
     private Class<?> getTargetClass(Object target) {
@@ -82,6 +100,6 @@ public class LogRecordPointcutAdvisor extends AbstractBeanFactoryPointcutAdvisor
 
     @Override
     public Pointcut getPointcut() {
-        return null;
+        return new LogRecordPointcut();
     }
 }

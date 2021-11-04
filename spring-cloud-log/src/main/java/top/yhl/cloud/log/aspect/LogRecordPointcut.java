@@ -1,11 +1,16 @@
-package top.yhl.cloud.log.aop;
+package top.yhl.cloud.log.aspect;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.aop.support.StaticMethodMatcherPointcut;
 import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
+/**
+ * @author yang_hl3
+ */
+@Aspect
 public class LogRecordPointcut extends StaticMethodMatcherPointcut implements Serializable {
     // LogRecord 的解析类
     private LogRecordOperationSource logRecordOperationSource;

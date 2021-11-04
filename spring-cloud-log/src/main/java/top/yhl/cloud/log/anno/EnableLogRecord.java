@@ -2,7 +2,7 @@ package top.yhl.cloud.log.anno;
 
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Import;
-import top.yhl.cloud.log.aop.LogRecordConfigureSelector;
+import top.yhl.cloud.log.aspect.LogRecordConfigureSelector;
 
 import java.lang.annotation.*;
 

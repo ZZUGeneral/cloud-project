@@ -1,4 +1,4 @@
-package top.yhl.cloud.log.aop;
+package top.yhl.cloud.log.aspect;
 
 import top.yhl.cloud.log.interceptor.LogRecordInterceptor;
 

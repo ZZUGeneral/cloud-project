@@ -1,6 +1,6 @@
 package top.yhl.cloud.log.interceptor;
 
-import top.yhl.cloud.log.aop.LogRecordOperationSource;
+import top.yhl.cloud.log.aspect.LogRecordOperationSource;
 import top.yhl.cloud.log.service.IFunctionService;
 
 public class LogRecordInterceptor {

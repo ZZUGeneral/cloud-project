@@ -9,26 +9,26 @@ import java.util.List;
 import java.util.Map;
 
 public class ParseFunctionFactory {
-    private Map<String, IParseFunction> allFunctionMap;
+    private Map<String, IParseFunction> functionMap;
 
     public ParseFunctionFactory(List<IParseFunction> parseFunctions) {
         if (CollectionUtils.isEmpty(parseFunctions)) {
             return;
         }
-        allFunctionMap = new HashMap<>();
+        functionMap = new HashMap<>();
         for (IParseFunction parseFunction : parseFunctions) {
             if (StringUtils.isEmpty(parseFunction.functionName())) {
                 continue;
             }
-            allFunctionMap.put(parseFunction.functionName(), parseFunction);
+            functionMap.put(parseFunction.functionName(), parseFunction);
         }
     }
 
     public IParseFunction getFunction(String functionName) {
-        return allFunctionMap.get(functionName);
+        return functionMap.get(functionName);
     }
 
     public boolean isBeforeFunction(String functionName) {
-        return allFunctionMap.get(functionName) != null && allFunctionMap.get(functionName).executeBefore();
+        return functionMap.get(functionName) != null && functionMap.get(functionName).executeBefore();
     }
 }

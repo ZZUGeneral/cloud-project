@@ -2,7 +2,6 @@ package top.yhl.cloud.log.entity;
 
 import org.springframework.context.expression.MethodBasedEvaluationContext;
 import org.springframework.core.ParameterNameDiscoverer;
-import top.yhl.cloud.log.entity.LogRecordContext;
 
 import java.lang.reflect.Method;
 import java.util.Map;
