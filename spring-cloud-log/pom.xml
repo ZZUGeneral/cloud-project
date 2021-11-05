@@ -5,7 +5,7 @@
     <groupId>top.yhl.cloud</groupId>
     <artifactId>log</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-cloud-log-meituan</name>
+    <name>spring-cloud-log</name>
     <description>spring-cloud-log</description>
 
     <properties>
@@ -39,13 +39,24 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.20</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -54,14 +65,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>net.java.dev.jna</groupId>
-            <artifactId>jna-platform</artifactId>
-            <version>5.9.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
         </dependency>
     </dependencies>
 
