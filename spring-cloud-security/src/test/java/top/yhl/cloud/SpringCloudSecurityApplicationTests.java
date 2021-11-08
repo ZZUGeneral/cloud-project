@@ -2,7 +2,6 @@ package top.yhl.cloud;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.json.JSONArray;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,8 +25,10 @@ import java.util.Map;
 class SpringCloudSecurityApplicationTests {
     @Test
     public void testsestet(){
+        // $2a$10$nTO5sl7DpQqPvDCYOBhL5eor3zvbdh3QCar6YUXR3Cdlw98JO8TQK
+        //$2a$10$vfgbQzXQLi81u.uM6BfbD.DvsEVhVPOEco6nzUjYe5bRis9kGHt7y
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String pwd = encoder.encode("nacos");
+        String pwd = encoder.encode("$2a$10$vfgbQzXQLi81u.uM6BfbD.DvsEVhVPOEco6nzUjYe5bRis9kGHt7y");
         System.out.println(pwd);
     }
 
