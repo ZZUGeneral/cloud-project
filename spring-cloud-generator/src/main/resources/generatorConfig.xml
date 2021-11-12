@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <classPathEntry location="D:\workplace\mysql-connector-java-8.0.26.jar"/>
+    <classPathEntry location="D:\WorkSpace\mysql-connector-java-8.0.26.jar"/>
     <context id="test" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
@@ -31,20 +31,20 @@
             <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="top.yhl.cloud.common.model"
+        <javaModelGenerator targetPackage="com.yhl.cloud.generator.common.model"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
             <property name="rootClass" value="com.yhl.cloud.generator.entity.BaseEntity"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="top.yhl.cloud.common.mapper"
+        <sqlMapGenerator targetPackage="com.yhl.cloud.generator.common.mapper"
                          targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="top.yhl.cloud.common.mapper"
+                             targetPackage="com.yhl.cloud.generator.common.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
@@ -54,7 +54,6 @@
                enableSelectByPrimaryKey="true">
             <columnOverride column="create_date" javaType="java.sql.Timestamp"/>
             <columnOverride column="update_date" javaType="java.sql.Timestamp"/>
-            <columnOverride column="plan_date" javaType="java.sql.Timestamp"/>
         </table>
         <table tableName="hd_feedback" domainObjectName="HdFeedback"
                enableCountByExample="true" enableUpdateByExample="true"
@@ -62,7 +61,6 @@
                enableSelectByPrimaryKey="true">
             <columnOverride column="create_date" javaType="java.sql.Timestamp"/>
             <columnOverride column="update_date" javaType="java.sql.Timestamp"/>
-            <columnOverride column="plan_date" javaType="java.sql.Timestamp"/>
         </table>
         <table tableName="hd_version" domainObjectName="HdVersion"
                enableCountByExample="true" enableUpdateByExample="true"
@@ -70,7 +68,6 @@
                enableSelectByPrimaryKey="true">
             <columnOverride column="create_date" javaType="java.sql.Timestamp"/>
             <columnOverride column="update_date" javaType="java.sql.Timestamp"/>
-            <columnOverride column="plan_date" javaType="java.sql.Timestamp"/>
         </table>
     </context>
 </generatorConfiguration>
