@@ -27,9 +27,12 @@ public class MailerServiceImpl implements MailService {
     //默认编码
     public static final String DEFAULT_ENCODING = "UTF-8";
 
-    //本身邮件的发送者，来自邮件配置
+    /**
+     * 本身邮件的发送者，来自邮件配置
+     */
     @Value("${spring.mail.username}")
     private String userName;
+
     @Value("${spring.mail.nickname}")
     private String nickname;
 

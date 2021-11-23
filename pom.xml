@@ -19,6 +19,7 @@
         <module>spring-cloud-generator</module>
         <module>spring-cloud-oauth</module>
         <module>spring-cloud-gateway</module>
+        <module>netty</module>
     </modules>
     <packaging>pom</packaging>
 

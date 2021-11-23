@@ -3,6 +3,9 @@ package top.yhl.cloud.common.mail;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
+/**
+ * @author yang_hl3
+ */
 public interface MailService {
     /**
      * 发送文本

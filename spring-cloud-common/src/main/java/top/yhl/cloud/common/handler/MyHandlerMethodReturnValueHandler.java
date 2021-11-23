@@ -8,6 +8,9 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author yang_hl3
+ */
 public class MyHandlerMethodReturnValueHandler implements HandlerMethodReturnValueHandler {
     private HandlerMethodReturnValueHandler handler;
 
