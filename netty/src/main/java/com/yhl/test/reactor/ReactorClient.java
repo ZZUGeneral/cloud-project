@@ -51,6 +51,6 @@ public class ReactorClient {
         SocketChannel channel=(SocketChannel)key.channel();
         ByteBuffer byteBuffer=ByteBuffer.allocate(1024);
         channel.read(byteBuffer);
-        System.out.println("client receive msg:"+new String(byteBuffer.array()));
+        System.out.println("com.netty.example.client receive msg:"+new String(byteBuffer.array()));
     }
 }

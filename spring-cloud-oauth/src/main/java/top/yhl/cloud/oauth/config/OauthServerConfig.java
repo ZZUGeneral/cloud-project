@@ -25,9 +25,9 @@ public class OauthServerConfig {
     public static final String RESOURCE_ID = "sos-resource";
 
     // 客户端 ID
-    public static final String CLIENT_ID = "sos-client";
+    public static final String CLIENT_ID = "sos-com.netty.example.client";
     // 客户端秘钥
-    public static final String CLIENT_SECRET = "sos-client-secret";
+    public static final String CLIENT_SECRET = "sos-com.netty.example.client-secret";
     public static final String ROLE_ADMIN = "ADMIN";
     // 鉴权模式
     public static final String[] GRANT_TYPE = {"password", "refresh_token"};
