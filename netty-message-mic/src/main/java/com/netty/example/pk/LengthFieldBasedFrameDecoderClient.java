@@ -1,4 +1,4 @@
-package com.yhl.test.pk;
+package com.netty.example.pk;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
