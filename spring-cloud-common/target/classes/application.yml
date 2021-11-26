@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: spring-cloud-common2
+  #配置邮箱
+  mail:
+    host: 邮箱服务商的protocol服务器主机 #smtp.qq.com
+    port: 465
+    protocol: 邮件协议 #smtp
+    username: 指定邮箱服务商的邮箱账号 #7557*****@qq.com
+    nickname: 指定自定义发送人的昵称 #后台系统
+    password: 邮箱账号密码或者三方登录授权码 #jwgteykojlf*****
+    default-encoding:  UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory
+        debug: true #调试模式
+    test-connection: false #启动项目时验证是否可以正确通信 默认为false
+

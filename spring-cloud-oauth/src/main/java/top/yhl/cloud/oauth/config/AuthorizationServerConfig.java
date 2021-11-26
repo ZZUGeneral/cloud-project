@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -33,7 +34,8 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     private DataSource dataSource;
 
     @Resource
-    private JwtAccessTokenConverter jwtAccessTokenConverter;
+    private PasswordEncoder passwordEncoder;
+
 
     @Autowired
     private TokenGranter tokenGranter;
@@ -66,9 +68,15 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     @Bean
-    @Autowired
-    public TokenStore tokenStore(JwtAccessTokenConverter jwtAccessTokenConverter) {
-        return new JwtTokenStore(jwtAccessTokenConverter);
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("123456");
+        return converter;
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
     @Bean
@@ -78,7 +86,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
         tokenServices.setSupportRefreshToken(true);
         tokenServices.setTokenStore(tokenStore);
         TokenEnhancerChain chain = new TokenEnhancerChain();
-        chain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter));
+        chain.setTokenEnhancers(Arrays.asList(jwtAccessTokenConverter()));
         tokenServices.setTokenEnhancer(chain);
         tokenServices.setAccessTokenValiditySeconds(60 * 60 * 24);
         tokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 3);
@@ -87,7 +95,7 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.accessTokenConverter(jwtAccessTokenConverter)
+        endpoints
                 .tokenGranter(tokenGranter) //四种授权模式+刷新令牌的模式+自定义授权模式
                 .authenticationManager(authenticationManager)//认证管理器
                 .tokenStore(tokenStore)//令牌存储
@@ -102,6 +110,5 @@ class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
     }
-
 
 }
