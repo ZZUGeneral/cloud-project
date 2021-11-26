@@ -19,11 +19,7 @@
         <module>spring-cloud-generator</module>
         <module>spring-cloud-oauth</module>
         <module>spring-cloud-gateway</module>
-        <module>netty</module>
-        <module>netty-message-protocol</module>
         <module>netty-message-mic</module>
-        <module>netty-message-server</module>
-        <module>netty-message-com.netty.example.client</module>
     </modules>
     <packaging>pom</packaging>
 
