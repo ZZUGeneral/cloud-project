@@ -1,11 +1,10 @@
 package top.yhl.cloud.oauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.bootstrap.encrypt.KeyProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -13,94 +12,67 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.TokenGranter;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
-import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+import top.yhl.cloud.oauth.service.UserService;
 
 import javax.annotation.Resource;
-import javax.sql.DataSource;
-import java.security.KeyPair;
 
-
-@Configuration
 @EnableAuthorizationServer
-class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-    @Autowired
-    private DataSource dataSource;
+@Configuration
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+    @Resource
+    public ClientDetailsService cientDetailsService;
 
-    @Autowired
-    private JwtAccessTokenConverter jwtAccessTokenConverter;
+    @Resource
+    public TokenStore tokenStore;
 
-    @Autowired
-    private TokenGranter tokenGranter;
-
-    @Autowired
-    UserDetailsService userDetailsService;
-
-    @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
-    TokenStore tokenStore;
-
-    @Bean("keyProp")
-    public KeyProperties keyProperties() {
-        return new KeyProperties();
-    }
-
-    @Resource(name = "keyProp")
-    private KeyProperties keyProperties;
-
-    @Bean
-    public ClientDetailsService clientDetails() {
-        return new JdbcClientDetailsService(dataSource);
-    }
+    @Resource
+    public AuthenticationManager authenticationManager;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(this.dataSource).clients(this.clientDetails());
+        clients.inMemory().withClient("myClient")
+                .secret(new BCryptPasswordEncoder().encode("123"))
+                .resourceIds("res")
+                .authorizedGrantTypes("authorization_code", "refresh_code")
+                .scopes("all")
+                .autoApprove(false)
+                .redirectUris("http://www.baidu.com");
     }
 
     @Bean
-    @Autowired
-    public TokenStore tokenStore(JwtAccessTokenConverter jwtAccessTokenConverter) {
-        return new JwtTokenStore(jwtAccessTokenConverter);
+    public AuthorizationCodeServices authorizationCodeServices() {
+        return new InMemoryAuthorizationCodeServices();
     }
 
     @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter(CustomUserAuthenticationConverter customUserAuthenticationConverter) {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        KeyPair keyPair = new KeyStoreKeyFactory
-                (keyProperties.getKeyStore().getLocation(), keyProperties.getKeyStore().getSecret().toCharArray())
-                .getKeyPair(keyProperties.getKeyStore().getAlias(), keyProperties.getKeyStore().getPassword().toCharArray());
-        converter.setKeyPair(keyPair);
-        //配置自定义的CustomUserAuthenticationConverter
-        DefaultAccessTokenConverter accessTokenConverter = (DefaultAccessTokenConverter) converter.getAccessTokenConverter();
-        accessTokenConverter.setUserTokenConverter(customUserAuthenticationConverter);
-        return converter;
+    public AuthorizationServerTokenServices authorizationServerTokenServices() {
+        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+        defaultTokenServices.setClientDetailsService(cientDetailsService);
+        defaultTokenServices.setSupportRefreshToken(true);
+
+        defaultTokenServices.setTokenStore(tokenStore);
+        defaultTokenServices.setAccessTokenValiditySeconds(60 * 60 * 2);
+        defaultTokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 3);
+        return defaultTokenServices;
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.accessTokenConverter(jwtAccessTokenConverter)
-                .tokenGranter(tokenGranter) //四种授权模式+刷新令牌的模式+自定义授权模式
-                .authenticationManager(authenticationManager)//认证管理器
-                .tokenStore(tokenStore)//令牌存储
-                .userDetailsService(userDetailsService)//用户信息service
-        ;
+        endpoints.authorizationCodeServices(authorizationCodeServices())
+                .authenticationManager(authenticationManager)
+                .tokenServices(authorizationServerTokenServices())
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST);
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-        oauthServer.allowFormAuthenticationForClients()
-                .passwordEncoder(new BCryptPasswordEncoder())
-                .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("permitAll()")
+                .allowFormAuthenticationForClients();
     }
-
-
 }

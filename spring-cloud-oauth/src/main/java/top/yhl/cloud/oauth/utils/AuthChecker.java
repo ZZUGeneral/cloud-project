@@ -1,12 +1,12 @@
 package top.yhl.cloud.oauth.utils;
 
-import top.yhl.cloud.oauth.cache.AuthStateCache;
-import top.yhl.cloud.oauth.entity.AuthConfig;
-import top.yhl.cloud.oauth.entity.AuthDefaultSource;
-import top.yhl.cloud.oauth.entity.AuthSource;
-import top.yhl.cloud.oauth.enums.AuthResponseStatus;
-import top.yhl.cloud.oauth.exception.AuthException;
-import top.yhl.cloud.oauth.entity.AuthCallback;
+import top.yhl.cloud.oauth.third.cache.AuthStateCache;
+import top.yhl.cloud.oauth.third.entity.AuthConfig;
+import top.yhl.cloud.oauth.third.entity.AuthDefaultSource;
+import top.yhl.cloud.oauth.third.entity.AuthSource;
+import top.yhl.cloud.oauth.third.enums.AuthResponseStatus;
+import top.yhl.cloud.oauth.third.exception.AuthException;
+import top.yhl.cloud.oauth.third.entity.AuthCallback;
 
 /**
  * 授权配置类的校验器

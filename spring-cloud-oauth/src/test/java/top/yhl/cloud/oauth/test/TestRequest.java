@@ -2,9 +2,9 @@ package top.yhl.cloud.oauth.test;
 
 import com.alibaba.fastjson.JSON;
 import org.junit.jupiter.api.Test;
-import top.yhl.cloud.oauth.entity.*;
-import top.yhl.cloud.oauth.request.AuthQqRequest;
-import top.yhl.cloud.oauth.request.AuthRequest;
+import top.yhl.cloud.oauth.third.entity.*;
+import top.yhl.cloud.oauth.third.request.AuthQqRequest;
+import top.yhl.cloud.oauth.third.request.AuthRequest;
 import top.yhl.cloud.oauth.utils.AuthStateUtils;
 
 public class TestRequest {

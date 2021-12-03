@@ -31,20 +31,20 @@
             <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="top.yhl.cloud.common.model"
+        <javaModelGenerator targetPackage="com.yhl.cloud.generator.model"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
             <property name="rootClass" value="com.yhl.cloud.generator.entity.BaseEntity"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="top.yhl.cloud.common.mapper"
+        <sqlMapGenerator targetPackage="com.yhl.cloud.generator.mapper"
                          targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="top.yhl.cloud.common.mapper"
+                             targetPackage="com.yhl.cloud.generator.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>

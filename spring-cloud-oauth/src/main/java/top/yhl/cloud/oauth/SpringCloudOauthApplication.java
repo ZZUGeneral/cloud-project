@@ -2,10 +2,10 @@ package top.yhl.cloud.oauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import top.yhl.cloud.oauth.entity.AuthCallback;
-import top.yhl.cloud.oauth.entity.AuthConfig;
-import top.yhl.cloud.oauth.request.AuthQqRequest;
-import top.yhl.cloud.oauth.request.AuthRequest;
+import top.yhl.cloud.oauth.third.entity.AuthCallback;
+import top.yhl.cloud.oauth.third.entity.AuthConfig;
+import top.yhl.cloud.oauth.third.request.AuthQqRequest;
+import top.yhl.cloud.oauth.third.request.AuthRequest;
 
 @SpringBootApplication
 public class SpringCloudOauthApplication {

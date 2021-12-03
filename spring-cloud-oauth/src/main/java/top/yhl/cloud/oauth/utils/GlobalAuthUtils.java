@@ -1,7 +1,7 @@
 package top.yhl.cloud.oauth.utils;
 
 import com.alibaba.fastjson.JSON;
-import top.yhl.cloud.oauth.exception.AuthException;
+import top.yhl.cloud.oauth.third.exception.AuthException;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
