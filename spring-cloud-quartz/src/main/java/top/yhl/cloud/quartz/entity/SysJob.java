@@ -1,10 +1,10 @@
-﻿package top.yhl.cloud.quartz.entity;
+package top.yhl.cloud.quartz.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import top.yhl.cloud.common.util.StringUtils;
 import top.yhl.cloud.quartz.constants.ScheduleConstants;
 import top.yhl.cloud.quartz.util.CronUtils;
 
@@ -13,7 +13,7 @@ import java.util.Date;
 /**
  * 定时任务调度表 sys_job
  */
-public class SysJob extends BaseEntity{
+public class SysJob extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -161,3 +161,4 @@ public class SysJob extends BaseEntity{
                 .toString();
     }
 }
+

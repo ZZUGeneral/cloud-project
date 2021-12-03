@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.util;
+package top.yhl.cloud.quartz.util;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -92,3 +92,4 @@ public abstract class AbstractQuartzJob implements Job {
      */
     protected abstract void doExecute(JobExecutionContext context, SysJob sysJob) throws Exception;
 }
+

@@ -16,6 +16,10 @@
         <module>spring-cloud-webflux</module>
         <module>spring-cloud-test</module>
         <module>spring-cloud-quartz</module>
+        <module>spring-cloud-generator</module>
+        <module>spring-cloud-oauth</module>
+        <module>spring-cloud-gateway</module>
+        <module>netty-message-mic</module>
     </modules>
     <packaging>pom</packaging>
 

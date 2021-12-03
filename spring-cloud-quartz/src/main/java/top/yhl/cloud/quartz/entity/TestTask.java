@@ -1,4 +1,5 @@
-﻿package top.yhl.cloud.quartz.entity;
+package top.yhl.cloud.quartz.entity;
+
 
 import org.springframework.stereotype.Component;
 

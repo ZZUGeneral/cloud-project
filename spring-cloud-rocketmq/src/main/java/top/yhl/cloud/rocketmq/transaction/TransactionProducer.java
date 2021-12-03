@@ -24,7 +24,7 @@ public class TransactionProducer {
             @Override
             public Thread newThread(Runnable r) {
                 Thread thread = new Thread(r);
-                thread.setName("client-transaction-msg-check-thread");
+                thread.setName("com.netty.example.client-transaction-msg-check-thread");
                 return thread;
             }
         });

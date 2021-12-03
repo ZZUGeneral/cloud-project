@@ -1,12 +1,10 @@
-﻿package top.yhl.cloud.quartz.mapper;
+package top.yhl.cloud.quartz.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import top.yhl.cloud.quartz.entity.SysJobLog;
 
 import java.util.List;
-
-// 调度任务日志信息 数据层
 
 @Mapper
 public interface SysJobLogMapper extends BaseMapper<SysJobLog> {
@@ -62,3 +60,4 @@ public interface SysJobLogMapper extends BaseMapper<SysJobLog> {
      */
     public void cleanJobLog();
 }
+

@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.util;
+package top.yhl.cloud.quartz.util;
 
 import org.quartz.*;
 import top.yhl.cloud.quartz.constants.ScheduleConstants;

@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.util;
+package top.yhl.cloud.quartz.util;
 
 import org.quartz.CronExpression;
 
@@ -46,3 +46,4 @@ public class CronUtils {
         }
     }
 }
+

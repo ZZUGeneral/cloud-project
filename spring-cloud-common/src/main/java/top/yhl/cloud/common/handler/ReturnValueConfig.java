@@ -10,6 +10,9 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBody
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author yang_hl3
+ */
 @Configuration
 public class ReturnValueConfig implements InitializingBean {
 

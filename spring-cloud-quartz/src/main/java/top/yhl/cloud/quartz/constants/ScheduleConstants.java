@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.constants;
+package top.yhl.cloud.quartz.constants;
 
 public class ScheduleConstants {
     public static final String TASK_CLASS_NAME = "TASK_CLASS_NAME";

@@ -2,10 +2,10 @@ package top.yhl.cloud;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.json.JSONArray;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
@@ -21,8 +21,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@SpringBootTest
+@SpringBootTest(classes = SpringCloudSecurityApplicationTests.class)
 class SpringCloudSecurityApplicationTests {
+    @Test
+    public void testsestet(){
+        // $2a$10$nTO5sl7DpQqPvDCYOBhL5eor3zvbdh3QCar6YUXR3Cdlw98JO8TQK
+        //$2a$10$vfgbQzXQLi81u.uM6BfbD.DvsEVhVPOEco6nzUjYe5bRis9kGHt7y
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String pwd = encoder.encode("$2a$10$vfgbQzXQLi81u.uM6BfbD.DvsEVhVPOEco6nzUjYe5bRis9kGHt7y");
+        System.out.println(pwd);
+    }
 
     @Test
     void contextLoads() {

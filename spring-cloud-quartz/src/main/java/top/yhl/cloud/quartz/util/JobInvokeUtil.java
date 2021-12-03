@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.util;
+package top.yhl.cloud.quartz.util;
 
 import top.yhl.cloud.common.util.SpringUtils;
 import top.yhl.cloud.common.util.StringUtils;
@@ -155,3 +155,4 @@ public class JobInvokeUtil {
         return StringUtils.substringBefore(beanName, ".");
     }
 }
+

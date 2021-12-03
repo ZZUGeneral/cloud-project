@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+top.yhl.cloud.log.aspectj.LogRecordAspect,\
+top.yhl.cloud.log.entity.ServerInfo,\
+top.yhl.cloud.log.util.LogTool

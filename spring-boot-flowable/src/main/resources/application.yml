@@ -1,0 +1,17 @@
+# 应用名称
+spring:
+  application:
+    name: spring-boot-flowable
+  datasource:
+    url: jdbc:mysql://localhost:3306/blue?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: defaultDataSource
+    username: root
+    password: root
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+
+flowable:
+  # 关闭定时任务
+  async-executor-activate: false

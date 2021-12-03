@@ -10,11 +10,11 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import top.yhl.cloud.common.entity.ResponseResult;
+import top.yhl.cloud.common.entity.ApiResponseBody;
 
 @EnableConfigurationProperties(EncryptProperties.class)
 @ControllerAdvice
-public class EncryptResponse implements ResponseBodyAdvice<ResponseResult> {
+public class EncryptResponse implements ResponseBodyAdvice<ApiResponseBody> {
     private ObjectMapper om = new ObjectMapper();
     @Autowired
     EncryptProperties encryptProperties;
@@ -26,18 +26,18 @@ public class EncryptResponse implements ResponseBodyAdvice<ResponseResult> {
     }
 
     @Override
-    public ResponseResult beforeBodyWrite(ResponseResult responseResult, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+    public ApiResponseBody beforeBodyWrite(ApiResponseBody apiResponseBody, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         byte[] keyBytes = encryptProperties.getKey().getBytes();
         try {
-            if (responseResult.getMsg() != null) {
-                responseResult.setMsg(AESUtil.encrypt(responseResult.getMsg().getBytes(), keyBytes));
+            if (apiResponseBody.getMsg() != null) {
+                apiResponseBody.setMsg(AESUtil.encrypt(apiResponseBody.getMsg().getBytes(), keyBytes));
             }
-            if (responseResult.getData() != null) {
-                responseResult.setData(AESUtil.encrypt(om.writeValueAsBytes(responseResult.getData()), keyBytes));
+            if (apiResponseBody.getData() != null) {
+                apiResponseBody.setData(AESUtil.encrypt(om.writeValueAsBytes(apiResponseBody.getData()), keyBytes));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return responseResult;
+        return apiResponseBody;
     }
 }

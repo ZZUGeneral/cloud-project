@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.util;
+package top.yhl.cloud.quartz.util;
 
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;

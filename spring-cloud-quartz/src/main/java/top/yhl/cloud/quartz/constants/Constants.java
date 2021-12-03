@@ -1,4 +1,4 @@
-﻿package top.yhl.cloud.quartz.constants;
+package top.yhl.cloud.quartz.constants;
 
 public class Constants {
     /**
